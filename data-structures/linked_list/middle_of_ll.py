@@ -28,6 +28,17 @@ class LinkedListMiddleNodeOp():
         prev_mid_node.next = slow_ptr.next
         return head
 
+    def reverse_linked_list(self, head: Node) -> 'Node':
+        # Here we will change the next pointer of every node to point to its previous node
+        prev = None
+        temp = head
+        while(temp is not None):
+            front = temp.next
+            temp.next = prev
+            prev = temp
+            temp = front
+        return prev
+
 
 head = Node(2)
 head = head.add_to_head(1)
@@ -35,5 +46,5 @@ head = head.add_to_tail(3)
 head = head.add_to_tail(4)
 # It is not compulsory to add init func to class
 ops = LinkedListMiddleNodeOp()
-head = ops.delete_middle_node(head)
+head = ops.reverse_linked_list(head)
 print(head)
