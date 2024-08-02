@@ -14,7 +14,7 @@ class LinkedListMiddleNodeOp():
             fast_ptr = fast_ptr.next.next
         return slow_ptr.data
 
-    def delete_middle_node(self, head: Node) -> None:
+    def delete_middle_node(self, head: Node) -> 'Node':
         # here we need again two pointers to find middle of linked list
         # but also require an additional third pointer to track the prev node of middle node to enable deletion
         # handle base cases first
@@ -26,6 +26,23 @@ class LinkedListMiddleNodeOp():
             slow_ptr = slow_ptr.next
             fast_ptr = fast_ptr.next.next
         prev_mid_node.next = slow_ptr.next
+        return head
+
+    def delete_nth_node_from_last(self, head, n) -> 'None':
+        if n == 0:
+            return head
+        length = 0
+        temp = head
+        while(temp):
+            length += 1
+            temp = temp.next
+        temp_head = head
+        index = length - n
+        while(temp_head != None and ((index - 1) > 0)):
+            temp_head = temp_head.next
+            index -= 1
+
+        temp_head.next = temp_head.next.next
         return head
 
     def reverse_linked_list(self, head: Node) -> 'Node':
@@ -44,7 +61,9 @@ head = Node(2)
 head = head.add_to_head(1)
 head = head.add_to_tail(3)
 head = head.add_to_tail(4)
+head = head.add_to_tail(5)
+head = head.add_to_tail(6)
 # It is not compulsory to add init func to class
 ops = LinkedListMiddleNodeOp()
-head = ops.reverse_linked_list(head)
+head = ops.delete_nth_node_from_last(head, 0)
 print(head)
