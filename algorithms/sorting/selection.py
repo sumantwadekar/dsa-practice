@@ -85,6 +85,22 @@ def merge_sort(arr, start, end):
     arr = merge(arr, start, mid, end)
     return arr
 
+"""
+Quicksort implementation
+1. Quick sort takes one element in every iteration, and then finds a position
+in that array such that all smaller elements are towards left and all greater elements towards right
+2. Then, it will recur for the left part and right part of that particular index
+3. Now, how does it find the correct position? Say, we have to find correct position for last element in array, lets call it pivot
+5. Assume pivot index to be starting index of the array and pivot to be last element of array
+6. Starting the iteration from start to end - 1 (as element at end-1 is already pivot)-
+    If current element is lte pivot, we have to move it to left of pIndex(i.e. increment pIndex by 1).
+        Swap the elements at current index and pindex and then increment pindex by 1
+    else
+        it is greater than pivot, hence keep the pindex at same index as we may find smaller elements later to replace with it
+6. After iteration, pindex stands as the first index at which the element is greater than pivot itself
+7. Hence we need to swap the elements at pivot position and the pindex
+8. This logic will be recursively called for each part of pindex i.e. left and right
+"""
 
 def partition_index(arr, start, end):
     pindex = start
